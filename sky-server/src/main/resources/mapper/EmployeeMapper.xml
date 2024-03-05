@@ -19,4 +19,16 @@
                 #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}, #{createUser,jdbcType=BIGINT},
                 #{updateUser,jdbcType=BIGINT})
     </insert>
+
+    <!--  员工分页查询  -->
+    <select id="pageQuery" resultType="com.sky.entity.Employee">
+        select *
+        from employee
+        <where>
+            <if test="name != null and name != ''">
+                and name like concat('%', #{name,jdbcType=VARCHAR}, '%')
+            </if>
+        </where>
+        order by create_time desc
+    </select>
 </mapper>

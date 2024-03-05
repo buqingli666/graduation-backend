@@ -7,25 +7,27 @@ import lombok.Data;
 import java.io.Serializable;
 
 @Data
-@ApiModel("新增员工时传递的数据模型")
+@ApiModel(description = "新增员工时传递的数据模型")
 public class EmployeeDTO implements Serializable {
 
-    @ApiModelProperty("员工id")
+    private static final long serialVersionUID = 1L;
+
+    @ApiModelProperty(value = "员工id")
     private Long id;
 
-    @ApiModelProperty("用户名")
+    @ApiModelProperty(value = "用户名")
     private String username;
 
-    @ApiModelProperty("姓名")
+    @ApiModelProperty(value = "姓名")
     private String name;
 
-    @ApiModelProperty("手机号")
+    @ApiModelProperty(value = "手机号")
     private String phone;
 
-    @ApiModelProperty("性别")
+    @ApiModelProperty(value = "性别")
     private String sex;
 
-    @ApiModelProperty("身份证")
+    @ApiModelProperty(value = "身份证")
     private String idNumber;
 
 }
