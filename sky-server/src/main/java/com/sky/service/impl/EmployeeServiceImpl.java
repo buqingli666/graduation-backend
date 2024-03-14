@@ -24,11 +24,23 @@ import org.springframework.util.DigestUtils;
 import java.time.LocalDateTime;
 import java.util.List;
 
+/*
+ * @Author buqingli
+ * @Date 2024/3/14 15:22
+ * @Description 员工管理服务实现
+ **/
+
 @Service
 public class EmployeeServiceImpl implements EmployeeService {
 
     @Autowired
     private EmployeeMapper employeeMapper;
+
+    /*
+     * @Author buqingli
+     * @Date 2024/3/14 15:23
+     * @Description 员工登录
+     **/
 
     public Employee login(EmployeeLoginDTO employeeLoginDTO) {
         String username = employeeLoginDTO.getUsername();
@@ -60,6 +72,12 @@ public class EmployeeServiceImpl implements EmployeeService {
         return employee;
     }
 
+    /*
+     * @Author buqingli
+     * @Date 2024/3/14 15:25
+     * @Description 新增员工
+     **/
+
     public void save(EmployeeDTO employeeDTO) {
         Employee employee = new Employee();
         //对象属性拷贝
@@ -77,6 +95,12 @@ public class EmployeeServiceImpl implements EmployeeService {
         employeeMapper.insert(employee);
     }
 
+    /*
+     * @Author buqingli
+     * @Date 2024/3/14 15:25
+     * @Description 员工分页查询
+     **/
+
     public PageResult pageQuery(EmployeePageQueryDTO employeePageQueryDTO) {
         // select * from employee limit 0,10
         // 开始分页查询
@@ -86,6 +110,12 @@ public class EmployeeServiceImpl implements EmployeeService {
         List<Employee> records = page.getResult();
         return new PageResult(total, records);
     }
+
+    /*
+     * @Author buqingli
+     * @Date 2024/3/14 15:25
+     * @Description 启用禁用员工账号
+     **/
 
     public void startOrStop(Integer status, Long id) {
         // update employee set status = ? where id = ?
@@ -99,11 +129,23 @@ public class EmployeeServiceImpl implements EmployeeService {
         employeeMapper.update(employee);
     }
 
+    /*
+     * @Author buqingli
+     * @Date 2024/3/14 15:26
+     * @Description 根据id查询员工信息
+     **/
+
     public Employee getById(Long id) {
         Employee employee = employeeMapper.getById(id);
         employee.setPassword("****");
         return employee;
     }
+
+    /*
+     * @Author buqingli
+     * @Date 2024/3/14 15:26
+     * @Description 编辑员工信息
+     **/
 
     public void update(EmployeeDTO employeeDTO) {
         Employee employee = new Employee();

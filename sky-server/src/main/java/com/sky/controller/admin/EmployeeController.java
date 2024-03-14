@@ -20,9 +20,12 @@ import org.springframework.web.bind.annotation.*;
 import java.util.HashMap;
 import java.util.Map;
 
-/**
- * 员工管理
- */
+/*
+ * @Author buqingli
+ * @Date 2024/3/14 15:13
+ * @Description 员工管理控制层
+ **/
+
 @RestController
 @RequestMapping(value = "/admin/employee", produces = "application/json; charset=utf-8")
 @Slf4j
@@ -33,6 +36,12 @@ public class EmployeeController {
     private EmployeeService employeeService;
     @Autowired
     private JwtProperties jwtProperties;
+
+    /*
+     * @Author buqingli
+     * @Date 2024/3/14 15:13
+     * @Description 员工登录
+     **/
 
     @PostMapping("/login")
     @ApiOperation(value = "员工登录")
@@ -60,11 +69,23 @@ public class EmployeeController {
         return Result.success(employeeLoginVO);
     }
 
+    /*
+     * @Author buqingli
+     * @Date 2024/3/14 15:14
+     * @Description 员工退出
+     **/
+
     @PostMapping("/logout")
     @ApiOperation(value = "员工退出")
     public Result<String> logout() {
         return Result.success();
     }
+
+    /*
+     * @Author buqingli
+     * @Date 2024/3/14 15:15
+     * @Description 新增员工
+     **/
 
     @PostMapping
     @ApiOperation(value = "新增员工")
@@ -74,6 +95,13 @@ public class EmployeeController {
         return Result.success();
     }
 
+
+    /*
+     * @Author buqingli
+     * @Date 2024/3/14 15:15
+     * @Description 员工分页查询
+     **/
+
     @GetMapping("/page")
     @ApiOperation(value = "员工分页查询")
     public Result<PageResult> page(EmployeePageQueryDTO employeePageQueryDTO) {
@@ -81,6 +109,12 @@ public class EmployeeController {
         PageResult pageResult = employeeService.pageQuery(employeePageQueryDTO);
         return Result.success(pageResult);
     }
+
+    /*
+     * @Author buqingli
+     * @Date 2024/3/14 15:15
+     * @Description 启用禁用员工账号
+     **/
 
     @PostMapping("/status/{status}")
     @ApiOperation(value = "启用禁用员工账号")
@@ -90,12 +124,24 @@ public class EmployeeController {
         return Result.success();
     }
 
+    /*
+     * @Author buqingli
+     * @Date 2024/3/14 15:17
+     * @Description 根据id查询员工信息
+     **/
+
     @GetMapping("/{id}")
     @ApiOperation(value = "根据id查询员工信息")
     public Result<Employee> getById(@PathVariable Long id) {
         Employee employee = employeeService.getById(id);
         return Result.success(employee);
     }
+
+    /*
+     * @Author buqingli
+     * @Date 2024/3/14 15:18
+     * @Description 编辑员工信息
+     **/
 
     @PutMapping
     @ApiOperation("编辑员工信息")

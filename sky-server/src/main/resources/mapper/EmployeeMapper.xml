@@ -25,7 +25,7 @@
         select *
         from employee
         <where>
-            <if test="name != null and name != ''">
+            <if test="name != null and name != ''.toString()">
                 and name like concat('%', #{name,jdbcType=VARCHAR}, '%')
             </if>
         </where>
@@ -36,22 +36,22 @@
     <update id="update" parameterType="Employee">
         update employee
         <set>
-            <if test="name != null and name != ''">
+            <if test="name != null and name != ''.toString()">
                 name = #{name,jdbcType=VARCHAR},
             </if>
-            <if test="username != null and username != ''">
+            <if test="username != null and username != ''.toString()">
                 username = #{username,jdbcType=VARCHAR},
             </if>
-            <if test="password != null and password != ''">
+            <if test="password != null and password != ''.toString()">
                 password = #{password,jdbcType=VARCHAR},
             </if>
-            <if test="phone != null and phone != ''">
+            <if test="phone != null and phone != ''.toString()">
                 phone = #{phone,jdbcType=VARCHAR},
             </if>
-            <if test="sex != null and sex != ''">
+            <if test="sex != null and sex != ''.toString()">
                 sex = #{sex,jdbcType=VARCHAR},
             </if>
-            <if test="idNumber != null and idNumber != ''">
+            <if test="idNumber != null and idNumber != ''.toString()">
                 id_number = #{idNumber,jdbcType=VARCHAR},
             </if>
             <if test="updateTime != null">
