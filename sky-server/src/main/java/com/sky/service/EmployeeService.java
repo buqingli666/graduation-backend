@@ -9,7 +9,7 @@ import com.sky.result.PageResult;
 /*
  * @Author buqingli
  * @Date 2024/3/14 15:19
- * @Description 员工管理服务
+ * @Description 员工管理服务层
  **/
 
 public interface EmployeeService {
