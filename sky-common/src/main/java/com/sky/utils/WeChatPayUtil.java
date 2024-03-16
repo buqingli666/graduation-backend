@@ -29,9 +29,12 @@ import java.util.Arrays;
 import java.util.Base64;
 import java.util.List;
 
-/**
- * 微信支付工具类
- */
+/*
+ * @Author buqingli
+ * @Date 2024/3/16 13:35
+ * @Description 微信支付工具类
+ **/
+
 @Component
 public class WeChatPayUtil {
 
@@ -44,11 +47,12 @@ public class WeChatPayUtil {
     @Autowired
     private WeChatProperties weChatProperties;
 
-    /**
-     * 获取调用微信接口的客户端工具对象
-     *
-     * @return
-     */
+    /*
+     * @Author buqingli
+     * @Date 2024/3/16 13:35
+     * @Description 获取调用微信接口的客户端工具对象
+     **/
+
     private CloseableHttpClient getClient() {
         PrivateKey merchantPrivateKey = null;
         try {
@@ -72,13 +76,12 @@ public class WeChatPayUtil {
         }
     }
 
-    /**
-     * 发送post方式请求
-     *
-     * @param url
-     * @param body
-     * @return
-     */
+    /*
+     * @Author buqingli
+     * @Date 2024/3/16 13:36
+     * @Description 发送 POST 方式请求
+     **/
+
     private String post(String url, String body) throws Exception {
         CloseableHttpClient httpClient = getClient();
 
@@ -98,12 +101,12 @@ public class WeChatPayUtil {
         }
     }
 
-    /**
-     * 发送get方式请求
-     *
-     * @param url
-     * @return
-     */
+    /*
+     * @Author buqingli
+     * @Date 2024/3/16 13:36
+     * @Description 发送 GET 方式请求
+     **/
+
     private String get(String url) throws Exception {
         CloseableHttpClient httpClient = getClient();
 

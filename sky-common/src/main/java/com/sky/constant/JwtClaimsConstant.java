@@ -1,5 +1,11 @@
 package com.sky.constant;
 
+/*
+ * @Author buqingli
+ * @Date 2024/3/16 13:21
+ * @Description Jwt 声明常量
+ **/
+
 public class JwtClaimsConstant {
 
     public static final String EMP_ID = "empId";

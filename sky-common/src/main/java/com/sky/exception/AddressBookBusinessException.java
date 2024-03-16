@@ -1,5 +1,11 @@
 package com.sky.exception;
 
+/*
+ * @Author buqingli
+ * @Date 2024/3/16 13:19
+ * @Description 地址簿业务异常
+ **/
+
 public class AddressBookBusinessException extends BaseException {
 
     public AddressBookBusinessException(String msg) {

@@ -1,5 +1,5 @@
-CREATE DATABASE  IF NOT EXISTS `sky_take_out` ;
-USE `sky_take_out`;
+CREATE DATABASE  IF NOT EXISTS `graduation_project` ;
+USE `graduation_project`;
 
 DROP TABLE IF EXISTS `address_book`;
 CREATE TABLE `address_book` (

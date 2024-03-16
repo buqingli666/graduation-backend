@@ -1,8 +1,11 @@
 package com.sky.constant;
 
-/**
- * 信息提示常量类
- */
+/*
+ * @Author buqingli
+ * @Date 2024/3/16 13:08
+ * @Description 信息提示常量类
+ **/
+
 public class MessageConstant {
 
     public static final String PASSWORD_ERROR = "密码错误";

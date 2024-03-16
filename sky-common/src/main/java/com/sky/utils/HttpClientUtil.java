@@ -20,9 +20,12 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
-/**
- * Http工具类
- */
+/*
+ * @Author buqingli
+ * @Date 2024/3/16 13:32
+ * @Description Http 工具类
+ **/
+
 public class HttpClientUtil {
 
     static final  int TIMEOUT_MSEC = 5 * 1000;
@@ -73,13 +76,12 @@ public class HttpClientUtil {
         return result;
     }
 
-    /**
-     * 发送POST方式请求
-     * @param url
-     * @param paramMap
-     * @return
-     * @throws IOException
-     */
+    /*
+     * @Author buqingli
+     * @Date 2024/3/16 13:33
+     * @Description 发送 POST 方式请求
+     **/
+
     public static String doPost(String url, Map<String, String> paramMap) throws IOException {
         // 创建Httpclient对象
         CloseableHttpClient httpClient = HttpClients.createDefault();
@@ -120,13 +122,12 @@ public class HttpClientUtil {
         return resultString;
     }
 
-    /**
-     * 发送POST方式请求
-     * @param url
-     * @param paramMap
-     * @return
-     * @throws IOException
-     */
+    /*
+     * @Author buqingli
+     * @Date 2024/3/16 13:33
+     * @Description 发送 POST 方式请求
+     **/
+
     public static String doPost4Json(String url, Map<String, String> paramMap) throws IOException {
         // 创建Httpclient对象
         CloseableHttpClient httpClient = HttpClients.createDefault();

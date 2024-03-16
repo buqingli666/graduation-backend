@@ -9,14 +9,23 @@ import lombok.Data;
 import lombok.extern.slf4j.Slf4j;
 import java.io.ByteArrayInputStream;
 
+/*
+ * @Author buqingli
+ * @Date 2024/3/16 13:32
+ * @Description 阿里云 OSS 工具类
+ **/
+
 @Data
 @AllArgsConstructor
 @Slf4j
 public class AliOssUtil {
 
     private String endpoint;
+
     private String accessKeyId;
+
     private String accessKeySecret;
+
     private String bucketName;
 
     /**
