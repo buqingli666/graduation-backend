@@ -1,8 +1,10 @@
 package com.sky.mapper;
 
 import com.github.pagehelper.Page;
+import com.sky.annotation.AutoFill;
 import com.sky.dto.CategoryPageQueryDTO;
 import com.sky.entity.Category;
+import com.sky.enumeration.OperationType;
 import org.apache.ibatis.annotations.Mapper;
 import java.util.List;
 
@@ -15,6 +17,7 @@ public interface CategoryMapper {
      * @Description 新增分类
      **/
 
+    @AutoFill(value = OperationType.INSERT)
     void insert(Category category);
 
     /*
@@ -39,6 +42,7 @@ public interface CategoryMapper {
      * @Description 根据id修改分类
      **/
 
+    @AutoFill(value = OperationType.UPDATE)
     void update(Category category);
 
     /*
@@ -48,4 +52,5 @@ public interface CategoryMapper {
      **/
 
     List<Category> list(Integer type);
+
 }
