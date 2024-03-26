@@ -37,3 +37,8 @@ oit:
     admin-ttl: 7200000
     # 设置前端传递过来的令牌名称
     admin-token-name: token
+  alioss:
+    endpoint: ${oit.alioss.endpoint}
+    access-key-id: ${oit.alioss.access-key-id}
+    access-key-secret: ${oit.alioss.access-key-secret}
+    bucket-name: ${oit.alioss.bucket-name}

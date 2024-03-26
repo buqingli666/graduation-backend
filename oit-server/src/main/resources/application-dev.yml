@@ -6,3 +6,8 @@ oit:
     database: graduation_project
     username: root
     password: root
+  alioss:
+    endpoint: oss-cn-beijing.aliyuncs.com
+    access-key-id: LTAI5tHbYBjrbBZpi9jBegwv
+    access-key-secret: GORCmFtdwbUsYSlscAemHgpWdTQcR6
+    bucket-name: graduation-projectss

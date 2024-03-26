@@ -28,13 +28,12 @@ public class AliOssUtil {
 
     private String bucketName;
 
-    /**
-     * 文件上传
-     *
-     * @param bytes
-     * @param objectName
-     * @return
-     */
+    /*
+     * @Author buqingli
+     * @Date 2024/3/26 16:08
+     * @Description 文件上传
+     **/
+
     public String upload(byte[] bytes, String objectName) {
 
         // 创建OSSClient实例。
