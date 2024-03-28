@@ -10,4 +10,15 @@
         </foreach>
     </insert>
 
+    <delete id="deleteByDishId">
+        delete from dish_flavor where dish_id = #{id,jdbcType=BIGINT}
+    </delete>
+
+    <delete id="deleteByDishIds">
+        delete from dish_flavor where dish_id in
+        <foreach collection="list" item="dishId" separator="," open="(" close=")">
+            #{dishId,jdbcType=BIGINT}
+        </foreach>
+    </delete>
+
 </mapper>

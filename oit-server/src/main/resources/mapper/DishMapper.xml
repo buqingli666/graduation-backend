@@ -5,7 +5,7 @@
     <select id="countByCategoryId" resultType="java.lang.Integer">
         select count(id)
         from dish
-        where category_id = #{categoryId}
+        where category_id = #{categoryId,jdbcType=BIGINT}
     </select>
 
     <insert id="insert" useGeneratedKeys="true" keyProperty="id">
@@ -30,5 +30,38 @@
                 #{price},
                 #{description})
     </insert>
+
+    <select id="pageQuery" resultType="com.oit.vo.DishVO">
+        select d.*, c.name as categoryName
+        from dish d
+                 left outer join category c on d.category_id = c.id
+        <where>
+            <if test="name != null and name != ''.toString()">
+                and d.name like concat('%', #{name,jdbcType=VARCHAR}, '%')
+            </if>
+            <if test="categoryId != null">
+                and d.category_id = #{categoryId,jdbcType=INTEGER}
+            </if>
+            <if test="status != null">
+                and d.status = #{status,jdbcType=INTEGER}
+            </if>
+        </where>
+        order by d.create_time desc
+    </select>
+
+    <select id="getById" resultType="com.oit.entity.Dish">
+        select * from dish where id = #{id,jdbcType=BIGINT}
+    </select>
+
+    <delete id="deleteById">
+        delete from dish where id = #{id,jdbcType=BIGINT}
+    </delete>
+
+    <delete id="deleteByIds">
+        delete from dish where id in
+        <foreach collection="list" item="id" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </delete>
 
 </mapper>

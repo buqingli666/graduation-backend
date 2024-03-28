@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
+import java.util.Objects;
 import java.util.UUID;
 
 /**
@@ -44,14 +45,14 @@ public class CommonController {
             //原始文件名
             String originalFilename = file.getOriginalFilename();
             //截取原始文件名的后缀   dfdfdf.png
-            String extension = originalFilename.substring(originalFilename.lastIndexOf("."));
+            String extension = Objects.requireNonNull(originalFilename).substring(originalFilename.lastIndexOf("."));
             //构造新文件名称
             String objectName = UUID.randomUUID().toString() + extension;
             //文件的请求路径
             String filePath = aliOssUtil.upload(file.getBytes(), objectName);
             return Result.success(filePath);
         } catch (IOException e) {
-            log.error("文件上传失败：{}", e);
+            log.error("文件上传失败：", e);
         }
         return Result.error(MessageConstant.UPLOAD_FAILED);
     }

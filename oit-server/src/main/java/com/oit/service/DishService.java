@@ -1,6 +1,10 @@
 package com.oit.service;
 
 import com.oit.dto.DishDTO;
+import com.oit.dto.DishPageQueryDTO;
+import com.oit.result.PageResult;
+
+import java.util.List;
 
 /**
  * @Author: buqingli
@@ -17,4 +21,21 @@ public interface DishService {
      **/
 
     void saveWithFlavor(DishDTO dishDTO);
+
+    /*
+     * @Author buqingli
+     * @Date 2024/3/28 11:03
+     * @Description 菜品分页查询
+     **/
+
+    PageResult pageQuery(DishPageQueryDTO dishPageQueryDTO);
+
+    /*
+     * @Author buqingli
+     * @Date 2024/3/28 11:24
+     * @Description 菜品批量删除
+     **/
+
+    void deleteBatch(List<Long> ids);
+
 }
