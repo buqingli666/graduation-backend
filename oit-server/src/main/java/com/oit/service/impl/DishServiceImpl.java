@@ -8,7 +8,9 @@ import com.oit.dto.DishDTO;
 import com.oit.dto.DishPageQueryDTO;
 import com.oit.entity.Dish;
 import com.oit.entity.DishFlavor;
+import com.oit.entity.SetmealDish;
 import com.oit.exception.DeletionNotAllowedException;
+import com.oit.exception.DishStopFailedException;
 import com.oit.mapper.DishFlavorMapper;
 import com.oit.mapper.DishMapper;
 import com.oit.mapper.SetmealDishMapper;
@@ -166,4 +168,26 @@ public class DishServiceImpl implements DishService {
             dishFlavorMapper.insertBatch(flavors);
         }
     }
+
+    /*
+     * @Author buqingli
+     * @Date 2024/3/28 17:16
+     * @Description 启售/停售菜品
+     **/
+
+    @Override
+    public void startOrStop(Integer status, Long id) {
+        //被套餐关联的菜品不能被停售---通过菜品id查setmeal_dish表
+        SetmealDish setmealDish = setmealDishMapper.getSetmealIdsByDishId(id);
+        if (ObjectUtils.isNotEmpty(setmealDish)) {
+            //抛出当前菜品被套餐关联了，不能停售异常
+            throw new DishStopFailedException(MessageConstant.DISH_BE_STOPED_BY_SETMEAL);
+        }
+        Dish dish = Dish.builder()
+                .id(id)
+                .status(status)
+                .build();
+        dishMapper.update(dish);
+    }
+
 }

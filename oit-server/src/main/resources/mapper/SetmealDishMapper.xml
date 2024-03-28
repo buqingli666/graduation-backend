@@ -10,4 +10,7 @@
         </foreach>
     </select>
 
+    <select id="getSetmealIdsByDishId" resultType="com.oit.entity.SetmealDish">
+        select * from setmeal_dish where dish_id = #{id,jdbcType=BIGINT}
+    </select>
 </mapper>

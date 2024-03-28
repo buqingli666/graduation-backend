@@ -54,4 +54,12 @@ public interface DishService {
      **/
 
     void updateWithFlavor(DishDTO dishDTO);
+
+    /*
+     * @Author buqingli
+     * @Date 2024/3/28 17:05
+     * @Description 起售/停售菜品
+     **/
+
+    void startOrStop(Integer status, Long id);
 }

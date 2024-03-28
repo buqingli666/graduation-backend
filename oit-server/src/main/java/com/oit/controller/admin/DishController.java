@@ -98,4 +98,17 @@ public class DishController {
         return Result.success();
     }
 
+    /*
+     * @Author buqingli
+     * @Date 2024/3/28 16:59
+     * @Description 起售/停售菜品
+     **/
+
+    @PostMapping("/status/{status}")
+    @ApiOperation("起售/停售菜品")
+    public Result<String> startOrStop(@PathVariable Integer status, Long id) {
+        log.info("菜品起售/停售：{},{}", status == 1 ? "起售" : "停售", id);
+        dishService.startOrStop(status, id);
+        return Result.success();
+    }
 }
