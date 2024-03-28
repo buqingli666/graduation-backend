@@ -21,4 +21,8 @@
         </foreach>
     </delete>
 
+    <select id="getByDishId" resultType="com.oit.entity.DishFlavor">
+        select * from dish_flavor where dish_id = #{dishId,jdbcType=BIGINT}
+    </select>
+
 </mapper>

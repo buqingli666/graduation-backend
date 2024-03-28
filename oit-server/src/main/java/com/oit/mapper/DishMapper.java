@@ -61,4 +61,13 @@ public interface DishMapper {
      **/
 
     void deleteByIds(List<Long> ids);
+
+    /*
+     * @Author buqingli
+     * @Date 2024/3/28 16:32
+     * @Description 根据id动态修改菜品数据
+     **/
+
+    @AutoFill(value = OperationType.UPDATE)
+    void update(Dish dish);
 }

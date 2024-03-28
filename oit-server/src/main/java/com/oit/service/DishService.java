@@ -3,6 +3,7 @@ package com.oit.service;
 import com.oit.dto.DishDTO;
 import com.oit.dto.DishPageQueryDTO;
 import com.oit.result.PageResult;
+import com.oit.vo.DishVO;
 
 import java.util.List;
 
@@ -38,4 +39,19 @@ public interface DishService {
 
     void deleteBatch(List<Long> ids);
 
+    /*
+     * @Author buqingli
+     * @Date 2024/3/28 16:21
+     * @Description 根据id查询菜品和对应的口味数据
+     **/
+
+    DishVO getByIdWithFlavor(Long id);
+
+    /*
+     * @Author buqingli
+     * @Date 2024/3/28 16:27
+     * @Description 根据id修改菜品基本信息和对应的口味信息
+     **/
+
+    void updateWithFlavor(DishDTO dishDTO);
 }

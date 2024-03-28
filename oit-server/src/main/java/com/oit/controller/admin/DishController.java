@@ -5,6 +5,7 @@ import com.oit.dto.DishPageQueryDTO;
 import com.oit.result.PageResult;
 import com.oit.result.Result;
 import com.oit.service.DishService;
+import com.oit.vo.DishVO;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
@@ -68,4 +69,33 @@ public class DishController {
         dishService.deleteBatch(ids);
         return Result.success();
     }
+
+    /*
+     * @Author buqingli
+     * @Date 2024/3/28 16:20
+     * @Description 根据id查询菜品
+     **/
+
+    @GetMapping("/{id}")
+    @ApiOperation("根据id查询菜品")
+    public Result<DishVO> getById(@PathVariable Long id) {
+        log.info("根据id查询菜品：{}", id);
+        DishVO dishVO = dishService.getByIdWithFlavor(id);//后绪步骤实现
+        return Result.success(dishVO);
+    }
+
+    /*
+     * @Author buqingli
+     * @Date 2024/3/28 16:27
+     * @Description 修改菜品
+     **/
+
+    @PutMapping
+    @ApiOperation("修改菜品")
+    public Result update(@RequestBody DishDTO dishDTO) {
+        log.info("修改菜品：{}", dishDTO);
+        dishService.updateWithFlavor(dishDTO);
+        return Result.success();
+    }
+
 }
