@@ -1,36 +1,41 @@
 package com.oit.dto;
 
 import com.oit.entity.SetmealDish;
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
+
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
 @Data
+@ApiModel(description = "套餐管理传递的数据模型")
 public class SetmealDTO implements Serializable {
 
+    @ApiModelProperty(value = "套餐id")
     private Long id;
 
-    //分类id
+    @ApiModelProperty(value = "分类id")
     private Long categoryId;
 
-    //套餐名称
+    @ApiModelProperty(value = "套餐名称")
     private String name;
 
-    //套餐价格
+    @ApiModelProperty(value = "套餐价格")
     private BigDecimal price;
 
-    //状态 0:停用 1:启用
+    @ApiModelProperty(value = "套餐状态 0:停用 1:启用")
     private Integer status;
 
-    //描述信息
+    @ApiModelProperty(value = "套餐描述信息")
     private String description;
 
-    //图片
+    @ApiModelProperty(value = "套餐图片路径")
     private String image;
 
-    //套餐菜品关系
+    @ApiModelProperty(value = "套餐菜品关系")
     private List<SetmealDish> setmealDishes = new ArrayList<>();
 
 }

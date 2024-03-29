@@ -70,4 +70,27 @@ public interface DishMapper {
 
     @AutoFill(value = OperationType.UPDATE)
     void update(Dish dish);
+
+    /*
+     * @Author buqingli
+     * @Date 2024/3/29 9:32
+     * @Description 动态条件查询菜品
+     **/
+
+    List<Dish> list(Dish dish);
+
+    /*
+     * @Author buqingli
+     * @Date 2024/3/29 12:04
+     * @Description
+     **/
+
+    /*
+     * @Author buqingli
+     * @Date 2024/3/29 12:07
+     * @Description 根据套餐id查询菜品
+     **/
+
+    List<Dish> getBySetmealId(Long setmealId);
+
 }

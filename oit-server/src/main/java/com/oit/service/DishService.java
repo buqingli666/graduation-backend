@@ -2,6 +2,7 @@ package com.oit.service;
 
 import com.oit.dto.DishDTO;
 import com.oit.dto.DishPageQueryDTO;
+import com.oit.entity.Dish;
 import com.oit.result.PageResult;
 import com.oit.vo.DishVO;
 
@@ -62,4 +63,13 @@ public interface DishService {
      **/
 
     void startOrStop(Integer status, Long id);
+
+    /*
+     * @Author buqingli
+     * @Date 2024/3/29 9:31
+     * @Description 根据分类id查询菜品
+     **/
+
+    List<Dish> list(Long categoryId);
+
 }

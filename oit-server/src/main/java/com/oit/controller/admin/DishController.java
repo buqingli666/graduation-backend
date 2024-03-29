@@ -2,6 +2,7 @@ package com.oit.controller.admin;
 
 import com.oit.dto.DishDTO;
 import com.oit.dto.DishPageQueryDTO;
+import com.oit.entity.Dish;
 import com.oit.result.PageResult;
 import com.oit.result.Result;
 import com.oit.service.DishService;
@@ -111,4 +112,18 @@ public class DishController {
         dishService.startOrStop(status, id);
         return Result.success();
     }
+
+    /*
+     * @Author buqingli
+     * @Date 2024/3/29 9:30
+     * @Description 根据分类id查询菜品
+     **/
+
+    @GetMapping("/list")
+    @ApiOperation("根据分类id查询菜品")
+    public Result<List<Dish>> list(Long categoryId) {
+        List<Dish> list = dishService.list(categoryId);
+        return Result.success(list);
+    }
+
 }
