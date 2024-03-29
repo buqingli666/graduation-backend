@@ -8,12 +8,12 @@ import com.oit.dto.DishDTO;
 import com.oit.dto.DishPageQueryDTO;
 import com.oit.entity.Dish;
 import com.oit.entity.DishFlavor;
-import com.oit.entity.SetmealDish;
+import com.oit.entity.Setmeal;
 import com.oit.exception.DeletionNotAllowedException;
-import com.oit.exception.DishStopFailedException;
 import com.oit.mapper.DishFlavorMapper;
 import com.oit.mapper.DishMapper;
 import com.oit.mapper.SetmealDishMapper;
+import com.oit.mapper.SetmealMapper;
 import com.oit.result.PageResult;
 import com.oit.service.DishService;
 import com.oit.vo.DishVO;
@@ -24,6 +24,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -44,6 +45,9 @@ public class DishServiceImpl implements DishService {
 
     @Autowired
     private SetmealDishMapper setmealDishMapper;
+
+    @Autowired
+    private SetmealMapper setmealMapper;
 
     /*
      * @Author buqingli
@@ -176,18 +180,29 @@ public class DishServiceImpl implements DishService {
      **/
 
     @Override
+    @Transactional
     public void startOrStop(Integer status, Long id) {
-        //被套餐关联的菜品不能被停售---通过菜品id查setmeal_dish表
-        SetmealDish setmealDish = setmealDishMapper.getSetmealIdsByDishId(id);
-        if (ObjectUtils.isNotEmpty(setmealDish)) {
-            //抛出当前菜品被套餐关联了，不能停售异常
-            throw new DishStopFailedException(MessageConstant.DISH_BE_STOPED_BY_SETMEAL);
-        }
         Dish dish = Dish.builder()
                 .id(id)
                 .status(status)
                 .build();
         dishMapper.update(dish);
+        if (status.equals(StatusConstant.DISABLE)) {
+            // 如果是停售操作，还需要将包含当前菜品的套餐也停售
+            List<Long> dishIds = new ArrayList<>();
+            dishIds.add(id);
+            // select setmeal_id from setmeal_dish where dish_id in (?,?,?)
+            List<Long> setmealIds = setmealDishMapper.getSetmealIdsByDishIds(dishIds);
+            if (ObjectUtils.isNotEmpty(setmealIds)) {
+                for (Long setmealId : setmealIds) {
+                    Setmeal setmeal = Setmeal.builder()
+                            .id(setmealId)
+                            .status(StatusConstant.DISABLE)
+                            .build();
+                    setmealMapper.update(setmeal);
+                }
+            }
+        }
     }
 
 }
