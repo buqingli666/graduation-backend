@@ -11,3 +11,6 @@ oit:
     access-key-id: LTAI5tHbYBjrbBZpi9jBegwv
     access-key-secret: GORCmFtdwbUsYSlscAemHgpWdTQcR6
     bucket-name: graduation-projectss
+  redis:
+    host: localhost
+    port: 6379
