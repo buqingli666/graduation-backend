@@ -30,14 +30,14 @@ public class HttpClientUtil {
 
     static final  int TIMEOUT_MSEC = 5 * 1000;
 
-    /**
-     * 发送GET方式请求
-     * @param url
-     * @param paramMap
-     * @return
-     */
+    /*
+     * @Author buqingli
+     * @Date 2024/3/30 16:15
+     * @Description 发送 GET 方式请求
+     **/
+
     public static String doGet(String url,Map<String,String> paramMap){
-        // 创建Httpclient对象
+        // 创建 Httpclient 对象
         CloseableHttpClient httpClient = HttpClients.createDefault();
 
         String result = "";
@@ -52,7 +52,7 @@ public class HttpClientUtil {
             }
             URI uri = builder.build();
 
-            //创建GET请求
+            //创建 GET 请求
             HttpGet httpGet = new HttpGet(uri);
 
             //发送请求
@@ -78,18 +78,18 @@ public class HttpClientUtil {
 
     /*
      * @Author buqingli
-     * @Date 2024/3/16 13:33
+     * @Date 2024/3/30 16:22
      * @Description 发送 POST 方式请求
      **/
 
     public static String doPost(String url, Map<String, String> paramMap) throws IOException {
-        // 创建Httpclient对象
+        // 创建 Httpclient 对象
         CloseableHttpClient httpClient = HttpClients.createDefault();
         CloseableHttpResponse response = null;
         String resultString = "";
 
         try {
-            // 创建Http Post请求
+            // 创建 POST 请求
             HttpPost httpPost = new HttpPost(url);
 
             // 创建参数列表
@@ -105,7 +105,7 @@ public class HttpClientUtil {
 
             httpPost.setConfig(builderRequestConfig());
 
-            // 执行http请求
+            // 执行 http 请求
             response = httpClient.execute(httpPost);
 
             resultString = EntityUtils.toString(response.getEntity(), "UTF-8");
@@ -129,17 +129,17 @@ public class HttpClientUtil {
      **/
 
     public static String doPost4Json(String url, Map<String, String> paramMap) throws IOException {
-        // 创建Httpclient对象
+        // 创建 Httpclient 对象
         CloseableHttpClient httpClient = HttpClients.createDefault();
         CloseableHttpResponse response = null;
         String resultString = "";
 
         try {
-            // 创建Http Post请求
+            // 创建 POST 请求
             HttpPost httpPost = new HttpPost(url);
 
             if (paramMap != null) {
-                //构造json格式数据
+                //构造 json 格式数据
                 JSONObject jsonObject = new JSONObject();
                 for (Map.Entry<String, String> param : paramMap.entrySet()) {
                     jsonObject.put(param.getKey(),param.getValue());
@@ -154,7 +154,7 @@ public class HttpClientUtil {
 
             httpPost.setConfig(builderRequestConfig());
 
-            // 执行http请求
+            // 执行 http 请求
             response = httpClient.execute(httpPost);
 
             resultString = EntityUtils.toString(response.getEntity(), "UTF-8");
