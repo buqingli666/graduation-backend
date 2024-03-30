@@ -38,7 +38,7 @@ public class DishController {
     @PostMapping
     @ApiOperation("新增菜品")
     public Result<?> save(@RequestBody DishDTO dishDTO) {
-        log.info("新增菜品：{}", dishDTO);
+        log.info("新增菜品:{}", dishDTO);
         dishService.saveWithFlavor(dishDTO);
         return Result.success();
     }
@@ -66,7 +66,7 @@ public class DishController {
     @DeleteMapping
     @ApiOperation("菜品批量删除")
     public Result<?> delete(@RequestParam List<Long> ids) {
-        log.info("菜品批量删除：{}", ids);
+        log.info("菜品批量删除:{}", ids);
         dishService.deleteBatch(ids);
         return Result.success();
     }
@@ -80,7 +80,7 @@ public class DishController {
     @GetMapping("/{id}")
     @ApiOperation("根据id查询菜品")
     public Result<DishVO> getById(@PathVariable Long id) {
-        log.info("根据id查询菜品：{}", id);
+        log.info("根据id查询菜品:{}", id);
         DishVO dishVO = dishService.getByIdWithFlavor(id);//后绪步骤实现
         return Result.success(dishVO);
     }
@@ -94,7 +94,7 @@ public class DishController {
     @PutMapping
     @ApiOperation("修改菜品")
     public Result<?> update(@RequestBody DishDTO dishDTO) {
-        log.info("修改菜品：{}", dishDTO);
+        log.info("修改菜品:{}", dishDTO);
         dishService.updateWithFlavor(dishDTO);
         return Result.success();
     }
@@ -108,7 +108,7 @@ public class DishController {
     @PostMapping("/status/{status}")
     @ApiOperation("起售/停售菜品")
     public Result<String> startOrStop(@PathVariable Integer status, Long id) {
-        log.info("菜品起售/停售：{},{}", status == 1 ? "起售" : "停售", id);
+        log.info("菜品起售/停售:{},{}", status == 1 ? "起售" : "停售", id);
         dishService.startOrStop(status, id);
         return Result.success();
     }
