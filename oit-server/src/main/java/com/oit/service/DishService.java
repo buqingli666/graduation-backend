@@ -72,4 +72,12 @@ public interface DishService {
 
     List<Dish> list(Long categoryId);
 
+
+    /*
+     * @Author buqingli
+     * @Date 2024/4/1 14:28
+     * @Description 条件查询菜品和口味
+     **/
+
+    List<DishVO> listWithFlavor(Dish dish);
 }

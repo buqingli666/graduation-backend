@@ -76,4 +76,27 @@
         delete from setmeal
         where id = #{setmealId,jdbcType=BIGINT}
     </delete>
+
+    <select id="list" resultType="com.oit.entity.Setmeal" parameterType="Setmeal">
+        select *
+        from setmeal
+        <where>
+            <if test="name != null and name != ''.toString()">
+                and name like concat('%', #{name,jdbcType=VARCHAR}, '%')
+            </if>
+            <if test="categoryId != null">
+                and category_id = #{categoryId,jdbcType=BIGINT}
+            </if>
+            <if test="status != null">
+                and status = #{status,jdbcType=INTEGER}
+            </if>
+        </where>
+    </select>
+
+    <select id="getDishItemBySetmealId" resultType="com.oit.vo.DishItemVO">
+        select sd.name, sd.copies, d.image, d.description
+        from setmeal_dish sd
+                 left join dish d on sd.dish_id = d.id
+        where sd.setmeal_id = #{setmealId,jdbcType=BIGINT}
+    </select>
 </mapper>

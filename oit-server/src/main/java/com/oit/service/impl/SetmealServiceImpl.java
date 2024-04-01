@@ -16,6 +16,7 @@ import com.oit.mapper.SetmealDishMapper;
 import com.oit.mapper.SetmealMapper;
 import com.oit.result.PageResult;
 import com.oit.service.SetmealService;
+import com.oit.vo.DishItemVO;
 import com.oit.vo.SetmealVO;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.ObjectUtils;
@@ -181,5 +182,27 @@ public class SetmealServiceImpl implements SetmealService {
                 .status(status)
                 .build();
         setmealMapper.update(setmeal);
+    }
+
+    /*
+     * @Author buqingli
+     * @Date 2024/4/1 14:45
+     * @Description 条件查询
+     **/
+
+    @Override
+    public List<Setmeal> list(Setmeal setmeal) {
+        return setmealMapper.list(setmeal);
+    }
+
+    /*
+     * @Author buqingli
+     * @Date 2024/4/1 15:01
+     * @Description 根据套餐id查询包含的菜品项列表
+     **/
+
+    @Override
+    public List<DishItemVO> getDishItemById(Long id) {
+        return setmealMapper.getDishItemBySetmealId(id);
     }
 }

@@ -2,7 +2,9 @@ package com.oit.service;
 
 import com.oit.dto.SetmealDTO;
 import com.oit.dto.SetmealPageQueryDTO;
+import com.oit.entity.Setmeal;
 import com.oit.result.PageResult;
+import com.oit.vo.DishItemVO;
 import com.oit.vo.SetmealVO;
 
 import java.util.List;
@@ -62,4 +64,20 @@ public interface SetmealService {
      **/
 
     void startOrStop(Integer status, Long id);
+
+    /*
+     * @Author buqingli
+     * @Date 2024/4/1 14:42
+     * @Description 条件查询
+     **/
+
+    List<Setmeal> list(Setmeal setmeal);
+
+    /*
+     * @Author buqingli
+     * @Date 2024/4/1 15:00
+     * @Description 根据套餐id查询包含的菜品项列表
+     **/
+
+    List<DishItemVO> getDishItemById(Long id);
 }
