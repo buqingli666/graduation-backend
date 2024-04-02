@@ -1,16 +1,16 @@
 package com.oit.controller.user;
 
 import com.oit.dto.ShoppingCartDTO;
+import com.oit.entity.ShoppingCart;
 import com.oit.result.Result;
 import com.oit.service.ShoppingCartService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 /*
  * @Author buqingli
@@ -39,6 +39,19 @@ public class ShoppingCartController {
         log.info("添加购物车,商品信息为:{}", shoppingCartDTO);
         shoppingCartService.addShoppingCart(shoppingCartDTO);
         return Result.success();
+    }
+
+    /*
+     * @Author buqingli
+     * @Date 2024/4/2 10:05
+     * @Description 查看购物车
+     **/
+
+    @GetMapping("/list")
+    @ApiOperation("查看购物车")
+    public Result<List<ShoppingCart>> list() {
+        List<ShoppingCart> shoppingCartList = shoppingCartService.showShoppingCart();
+        return Result.success(shoppingCartList);
     }
 
 }

@@ -1,6 +1,9 @@
 package com.oit.service;
 
 import com.oit.dto.ShoppingCartDTO;
+import com.oit.entity.ShoppingCart;
+
+import java.util.List;
 
 /**
  * @Author: buqingli
@@ -17,4 +20,11 @@ public interface ShoppingCartService {
 
     void addShoppingCart(ShoppingCartDTO shoppingCartDTO);
 
+    /*
+     * @Author buqingli
+     * @Date 2024/4/2 10:06
+     * @Description 查看购物车
+     **/
+
+    List<ShoppingCart> showShoppingCart();
 }
