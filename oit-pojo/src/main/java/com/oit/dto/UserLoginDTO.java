@@ -6,12 +6,6 @@ import lombok.Data;
 
 import java.io.Serializable;
 
-/*
- * @Author buqingli
- * @Date 2024/4/1 11:00
- * @Description C端用户登录
- **/
-
 @Data
 @ApiModel(description = "C端用户登录传递的数据模型")
 public class UserLoginDTO implements Serializable {

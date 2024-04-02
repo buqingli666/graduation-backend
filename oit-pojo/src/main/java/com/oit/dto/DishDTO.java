@@ -14,6 +14,8 @@ import java.util.List;
 @ApiModel(description = "新增菜品时传递的数据模型")
 public class DishDTO implements Serializable {
 
+    private static final long serialVersionUID = 1L;
+
     @ApiModelProperty(value = "菜品id")
     private Long id;
 

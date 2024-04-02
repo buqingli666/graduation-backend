@@ -14,6 +14,8 @@ import java.util.List;
 @ApiModel(description = "套餐管理传递的数据模型")
 public class SetmealDTO implements Serializable {
 
+    private static final long serialVersionUID = 1L;
+
     @ApiModelProperty(value = "套餐id")
     private Long id;
 
