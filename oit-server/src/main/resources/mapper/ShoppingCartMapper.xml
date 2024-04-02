@@ -34,4 +34,11 @@
                 #{dishId,jdbcType=BIGINT}, #{setmealId,jdbcType=BIGINT}, #{dishFlavor,jdbcType=VARCHAR},
                 #{number,jdbcType=INTEGER}, #{amount,jdbcType=DECIMAL}, #{createTime,jdbcType=TIMESTAMP})
     </insert>
+
+    <delete id="deleteByUserId">
+        delete
+        from shopping_cart
+        where user_id = #{userId,jdbcType=BIGINT}
+    </delete>
+
 </mapper>

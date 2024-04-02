@@ -93,4 +93,17 @@ public class ShoppingCartServiceImpl implements ShoppingCartService {
                 .build();
         return shoppingCartMapper.list(shoppingCart);
     }
+
+    /*
+     * @Author buqingli
+     * @Date 2024/4/2 10:27
+     * @Description 清空购物车
+     **/
+
+    @Override
+    public void cleanShoppingCart() {
+        //获取到当前微信用户的id
+        Long userId = BaseContext.getCurrentId();
+        shoppingCartMapper.deleteByUserId(userId);
+    }
 }

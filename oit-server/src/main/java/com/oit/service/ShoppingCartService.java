@@ -27,4 +27,12 @@ public interface ShoppingCartService {
      **/
 
     List<ShoppingCart> showShoppingCart();
+
+    /*
+     * @Author buqingli
+     * @Date 2024/4/2 10:26
+     * @Description 清空购物车
+     **/
+
+    void cleanShoppingCart();
 }
