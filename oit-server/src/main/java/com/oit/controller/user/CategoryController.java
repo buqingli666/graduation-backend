@@ -15,7 +15,7 @@ import java.util.List;
 /*
  * @Author buqingli
  * @Date 2024/4/1 15:19
- * @Description C端-分类
+ * @Description C端-分类管理控制层
  **/
 
 @RestController("userCategoryController")
