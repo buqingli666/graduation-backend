@@ -41,4 +41,10 @@
         where user_id = #{userId,jdbcType=BIGINT}
     </delete>
 
+    <delete id="deleteById">
+        delete
+        from shopping_cart
+        where id = #{id,jdbcType=BIGINT}
+    </delete>
+
 </mapper>

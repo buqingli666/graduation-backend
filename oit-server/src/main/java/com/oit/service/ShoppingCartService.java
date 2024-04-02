@@ -35,4 +35,13 @@ public interface ShoppingCartService {
      **/
 
     void cleanShoppingCart();
+
+    /*
+     * @Author buqingli
+     * @Date 2024/4/2 10:35
+     * @Description 删除购物车中单个商品
+     **/
+
+    void subShoppingCart(ShoppingCartDTO shoppingCartDTO);
+
 }
