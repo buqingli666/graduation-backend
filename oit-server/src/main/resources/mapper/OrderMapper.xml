@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.oit.mapper.OrderMapper">
+    <insert id="insert" parameterType="Orders" useGeneratedKeys="true" keyProperty="id">
+        insert into orders
+        (number, status, user_id, address_book_id, order_time, checkout_time, pay_method, pay_status, amount, remark,
+         phone, address, consignee, estimated_delivery_time, delivery_status, pack_amount, tableware_number,
+         tableware_status)
+        values (#{number,jdbcType=VARCHAR}, #{status,jdbcType=INTEGER}, #{userId,jdbcType=BIGINT},
+                #{addressBookId,jdbcType=BIGINT},
+                #{orderTime,jdbcType=TIMESTAMP}, #{checkoutTime,jdbcType=TIMESTAMP}, #{payMethod,jdbcType=INTEGER},
+                #{payStatus,jdbcType=INTEGER}, #{amount,jdbcType=DECIMAL}, #{remark,jdbcType=VARCHAR},
+                #{phone,jdbcType=VARCHAR}, #{address,jdbcType=VARCHAR}, #{consignee,jdbcType=VARCHAR},
+                #{estimatedDeliveryTime,jdbcType=TIMESTAMP}, #{deliveryStatus,jdbcType=INTEGER},
+                #{packAmount,jdbcType=INTEGER}, #{tablewareNumber,jdbcType=INTEGER},
+                #{tablewareStatus,jdbcType=INTEGER})
+    </insert>
+</mapper>

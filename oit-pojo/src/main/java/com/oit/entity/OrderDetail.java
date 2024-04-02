@@ -1,5 +1,7 @@
 package com.oit.entity;
 
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -8,40 +10,40 @@ import lombok.NoArgsConstructor;
 import java.io.Serializable;
 import java.math.BigDecimal;
 
-/**
- * 订单明细
- */
 @Data
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
+@ApiModel(description = "订单明细实体类")
 public class OrderDetail implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
+    @ApiModelProperty(value = "订单明细id")
     private Long id;
 
-    //名称
+    @ApiModelProperty(value = "名称")
     private String name;
 
-    //订单id
+    @ApiModelProperty(value = "订单id")
     private Long orderId;
 
-    //菜品id
+    @ApiModelProperty(value = "菜品id")
     private Long dishId;
 
-    //套餐id
+    @ApiModelProperty(value = "套餐id")
     private Long setmealId;
 
-    //口味
+    @ApiModelProperty(value = "口味")
     private String dishFlavor;
 
-    //数量
+    @ApiModelProperty(value = "数量")
     private Integer number;
 
-    //金额
+    @ApiModelProperty(value = "金额")
     private BigDecimal amount;
 
-    //图片
+    @ApiModelProperty(value = "图片路径")
     private String image;
+
 }
