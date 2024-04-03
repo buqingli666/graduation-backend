@@ -102,4 +102,12 @@ public interface OrderService {
      **/
 
     void rejection(OrdersRejectionDTO ordersRejectionDTO) throws Exception;
+
+    /*
+     * @Author buqingli
+     * @Date 2024/4/3 15:28
+     * @Description 商家取消订单
+     **/
+
+    void cancel(OrdersCancelDTO ordersCancelDTO) throws Exception;
 }
