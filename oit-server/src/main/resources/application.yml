@@ -51,3 +51,10 @@ oit:
   wechat:
     appid: ${oit.wechat.appid}
     secret: ${oit.wechat.secret}
+    mchid: ${oit.wechat.mchid}
+    mchSerialNo: ${oit.wechat.mchSerialNo}
+    privateKeyFilePath: ${oit.wechat.privateKeyFilePath}
+    apiV3Key: ${oit.wechat.apiV3Key}
+    weChatPayCertFilePath: ${oit.wechat.weChatPayCertFilePath}
+    notifyUrl: ${oit.wechat.notifyUrl}
+    refundNotifyUrl: ${oit.wechat.refundNotifyUrl}

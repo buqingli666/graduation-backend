@@ -15,4 +15,42 @@
                 #{packAmount,jdbcType=INTEGER}, #{tablewareNumber,jdbcType=INTEGER},
                 #{tablewareStatus,jdbcType=INTEGER})
     </insert>
+
+    <select id="getByNumberAndUserId" resultType="com.oit.entity.Orders">
+        select *
+        from orders
+        where number = #{orderNumber,jdbcType=VARCHAR}
+          and user_id = #{userId,jdbcType=BIGINT}
+    </select>
+
+    <update id="update" parameterType="Orders">
+        update orders
+        <set>
+            <if test="cancelReason != null and cancelReason != ''.toString() ">
+                cancel_reason = #{cancelReason,jdbcType=VARCHAR},
+            </if>
+            <if test="rejectionReason != null and rejectionReason != ''.toString() ">
+                rejection_reason = #{rejectionReason,jdbcType=VARCHAR},
+            </if>
+            <if test="cancelTime != null">
+                cancel_time = #{checkoutTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="payStatus != null">
+                pay_status = #{payStatus,jdbcType=INTEGER},
+            </if>
+            <if test="payMethod != null">
+                pay_method = #{payMethod,jdbcType=INTEGER},
+            </if>
+            <if test="checkoutTime != null">
+                checkout_time = #{checkoutTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="status != null">
+                status = #{status,jdbcType=INTEGER},
+            </if>
+            <if test="deliveryTime != null">
+                delivery_time = #{deliveryTime,jdbcType=TIMESTAMP},
+            </if>
+        </set>
+        where id = #{id,jdbcType=BIGINT}
+    </update>
 </mapper>

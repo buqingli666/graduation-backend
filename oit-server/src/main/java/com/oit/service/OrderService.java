@@ -1,6 +1,8 @@
 package com.oit.service;
 
+import com.oit.dto.OrdersPaymentDTO;
 import com.oit.dto.OrdersSubmitDTO;
+import com.oit.vo.OrderPaymentVO;
 import com.oit.vo.OrderSubmitVO;
 
 /**
@@ -19,4 +21,19 @@ public interface OrderService {
 
     OrderSubmitVO submitOrder(OrdersSubmitDTO ordersSubmitDTO);
 
+    /*
+     * @Author buqingli
+     * @Date 2024/4/2 17:24
+     * @Description 订单支付
+     **/
+
+    OrderPaymentVO payment(OrdersPaymentDTO ordersPaymentDTO) throws Exception;
+
+    /*
+     * @Author buqingli
+     * @Date 2024/4/2 17:24
+     * @Description 支付成功，修改订单状态
+     **/
+
+    void paySuccess(String outTradeNo);
 }

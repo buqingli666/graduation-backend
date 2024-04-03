@@ -22,4 +22,12 @@ public interface UserMapper {
      **/
 
     void insert(User user);
+
+    /*
+     * @Author buqingli
+     * @Date 2024/4/1 11:30
+     * @Description 根据id查询用户
+     **/
+
+    User getById(Long userId);
 }
