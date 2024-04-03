@@ -24,3 +24,7 @@ oit:
     weChatPayCertFilePath: # D:\wechatpay_166D96F876F45C7D07CE98952A96EC980368ACFC.pem
     notifyUrl: # https://www.weixin.qq.com/notify/paySuccess
     refundNotifyUrl: # https://www.weixin.qq.com/notify/refundSuccess
+  shop:
+    address: 内蒙古鄂尔多斯市康巴什区鄂尔多斯大街东1号
+  baidu:
+    ak: NYxSsdghNJnaGsuIHC15zPFCXAyr6n4B

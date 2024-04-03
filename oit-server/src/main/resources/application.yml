@@ -58,3 +58,7 @@ oit:
     weChatPayCertFilePath: ${oit.wechat.weChatPayCertFilePath}
     notifyUrl: ${oit.wechat.notifyUrl}
     refundNotifyUrl: ${oit.wechat.refundNotifyUrl}
+  shop:
+    address: ${oit.shop.address}
+  baidu:
+    ak: ${oit.baidu.ak}
