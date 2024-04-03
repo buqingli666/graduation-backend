@@ -1,5 +1,6 @@
 package com.oit.service;
 
+import com.oit.dto.OrdersPageQueryDTO;
 import com.oit.dto.OrdersPaymentDTO;
 import com.oit.dto.OrdersSubmitDTO;
 import com.oit.result.PageResult;
@@ -70,4 +71,12 @@ public interface OrderService {
      **/
 
     void repetition(Long id);
+
+    /*
+     * @Author buqingli
+     * @Date 2024/4/3 14:06
+     * @Description 条件搜索订单
+     **/
+
+    PageResult conditionSearch(OrdersPageQueryDTO ordersPageQueryDTO);
 }
