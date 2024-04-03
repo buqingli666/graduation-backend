@@ -2,6 +2,7 @@ package com.oit.service;
 
 import com.oit.dto.OrdersPaymentDTO;
 import com.oit.dto.OrdersSubmitDTO;
+import com.oit.result.PageResult;
 import com.oit.vo.OrderPaymentVO;
 import com.oit.vo.OrderSubmitVO;
 
@@ -36,4 +37,12 @@ public interface OrderService {
      **/
 
     void paySuccess(String outTradeNo);
+
+    /*
+     * @Author buqingli
+     * @Date 2024/4/3 12:01
+     * @Description 用户端订单分页查询
+     **/
+
+    PageResult pageQuery4User(int page, int pageSize, Integer status);
 }

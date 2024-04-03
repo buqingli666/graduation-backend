@@ -26,10 +26,10 @@
     <update id="update" parameterType="Orders">
         update orders
         <set>
-            <if test="cancelReason != null and cancelReason != ''.toString() ">
+            <if test="cancelReason != null and cancelReason != ''.toString()">
                 cancel_reason = #{cancelReason,jdbcType=VARCHAR},
             </if>
-            <if test="rejectionReason != null and rejectionReason != ''.toString() ">
+            <if test="rejectionReason != null and rejectionReason != ''.toString()">
                 rejection_reason = #{rejectionReason,jdbcType=VARCHAR},
             </if>
             <if test="cancelTime != null">
@@ -53,4 +53,30 @@
         </set>
         where id = #{id,jdbcType=BIGINT}
     </update>
+
+    <select id="pageQuery" resultType="com.oit.entity.Orders">
+        select *
+        from orders
+        <where>
+            <if test="number != null and number != ''.toString()">
+                and number like concat('%', #{number,jdbcType=VARCHAR}, '%')
+            </if>
+            <if test="phone != null and phone != ''.toString()">
+                and phone like concat('%', #{phone,jdbcType=VARCHAR}, '%')
+            </if>
+            <if test="userId != null">
+                and user_id = #{userId,jdbcType=BIGINT}
+            </if>
+            <if test="status != null">
+                and status = #{status,jdbcType=INTEGER}
+            </if>
+            <if test="beginTime != null">
+                and order_time &gt;= #{beginTime,jdbcType=TIMESTAMP}
+            </if>
+            <if test="endTime != null">
+                and order_time &lt;= #{endTime,jdbcType=TIMESTAMP}
+            </if>
+        </where>
+        order by order_time desc
+    </select>
 </mapper>

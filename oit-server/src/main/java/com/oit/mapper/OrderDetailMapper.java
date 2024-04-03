@@ -15,4 +15,12 @@ public interface OrderDetailMapper {
      **/
 
     void insertBatch(List<OrderDetail> orderDetailList);
+
+    /*
+     * @Author buqingli
+     * @Date 2024/4/3 12:15
+     * @Description 根据订单id查询订单明细
+     **/
+
+    List<OrderDetail> getByOrderId(Long orderId);
 }

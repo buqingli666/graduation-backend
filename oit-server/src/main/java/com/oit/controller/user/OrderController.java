@@ -2,6 +2,7 @@ package com.oit.controller.user;
 
 import com.oit.dto.OrdersPaymentDTO;
 import com.oit.dto.OrdersSubmitDTO;
+import com.oit.result.PageResult;
 import com.oit.result.Result;
 import com.oit.service.OrderService;
 import com.oit.vo.OrderPaymentVO;
@@ -60,6 +61,19 @@ public class OrderController {
         //--------------模拟交易成功，修改数据库订单状态--------------
 
         return Result.success(orderPaymentVO);
+    }
+
+    /*
+     * @Author buqingli
+     * @Date 2024/4/3 12:00
+     * @Description 历史订单查询 status 订单状态 1待付款 2待接单 3已接单 4派送中 5已完成 6已取消
+     **/
+
+    @GetMapping("/historyOrders")
+    @ApiOperation("历史订单查询")
+    public Result<PageResult> page(int page, int pageSize, Integer status) {
+        PageResult pageResult = orderService.pageQuery4User(page, pageSize, status);
+        return Result.success(pageResult);
     }
 
 }

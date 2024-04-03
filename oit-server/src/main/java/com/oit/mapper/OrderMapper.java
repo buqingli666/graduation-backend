@@ -1,5 +1,7 @@
 package com.oit.mapper;
 
+import com.github.pagehelper.Page;
+import com.oit.dto.OrdersPageQueryDTO;
 import com.oit.entity.Orders;
 import org.apache.ibatis.annotations.Mapper;
 
@@ -30,5 +32,11 @@ public interface OrderMapper {
 
     void update(Orders orders);
 
+    /*
+     * @Author buqingli
+     * @Date 2024/4/3 12:12
+     * @Description 分页条件查询并按下单时间排序
+     **/
 
+    Page<Orders> pageQuery(OrdersPageQueryDTO ordersPageQueryDTO);
 }
