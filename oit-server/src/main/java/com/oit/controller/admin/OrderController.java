@@ -5,11 +5,13 @@ import com.oit.result.PageResult;
 import com.oit.result.Result;
 import com.oit.service.OrderService;
 import com.oit.vo.OrderStatisticsVO;
+import com.oit.vo.OrderVO;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -52,5 +54,18 @@ public class OrderController {
     public Result<OrderStatisticsVO> statistics() {
         OrderStatisticsVO orderStatisticsVO = orderService.statistics();
         return Result.success(orderStatisticsVO);
+    }
+
+    /*
+     * @Author buqingli
+     * @Date 2024/4/3 14:57
+     * @Description 订单详情
+     **/
+
+    @GetMapping("/details/{id}")
+    @ApiOperation("查询订单详情")
+    public Result<OrderVO> details(@PathVariable("id") Long id) {
+        OrderVO orderVO = orderService.details(id);
+        return Result.success(orderVO);
     }
 }
