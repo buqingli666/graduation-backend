@@ -110,4 +110,21 @@ public interface OrderService {
      **/
 
     void cancel(OrdersCancelDTO ordersCancelDTO) throws Exception;
+
+    /*
+     * @Author buqingli
+     * @Date 2024/4/3 15:37
+     * @Description 派送订单
+     **/
+
+    void delivery(Long id);
+
+    /*
+     * @Author buqingli
+     * @Date 2024/4/3 15:44
+     * @Description 完成订单
+     **/
+
+    void complete(Long id);
+
 }
