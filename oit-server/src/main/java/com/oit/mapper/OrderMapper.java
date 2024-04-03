@@ -47,4 +47,12 @@ public interface OrderMapper {
      **/
 
     Orders getById(Long id);
+
+    /*
+     * @Author buqingli
+     * @Date 2024/4/3 14:48
+     * @Description 根据状态统计订单数量
+     **/
+
+    Integer countStatus(Integer status);
 }

@@ -5,6 +5,7 @@ import com.oit.dto.OrdersPaymentDTO;
 import com.oit.dto.OrdersSubmitDTO;
 import com.oit.result.PageResult;
 import com.oit.vo.OrderPaymentVO;
+import com.oit.vo.OrderStatisticsVO;
 import com.oit.vo.OrderSubmitVO;
 import com.oit.vo.OrderVO;
 
@@ -79,4 +80,12 @@ public interface OrderService {
      **/
 
     PageResult conditionSearch(OrdersPageQueryDTO ordersPageQueryDTO);
+
+    /*
+     * @Author buqingli
+     * @Date 2024/4/3 14:46
+     * @Description 各个状态的订单数量统计
+     **/
+
+    OrderStatisticsVO statistics();
 }

@@ -4,6 +4,7 @@ import com.oit.dto.OrdersPageQueryDTO;
 import com.oit.result.PageResult;
 import com.oit.result.Result;
 import com.oit.service.OrderService;
+import com.oit.vo.OrderStatisticsVO;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
@@ -38,5 +39,18 @@ public class OrderController {
     public Result<PageResult> conditionSearch(OrdersPageQueryDTO ordersPageQueryDTO) {
         PageResult pageResult = orderService.conditionSearch(ordersPageQueryDTO);
         return Result.success(pageResult);
+    }
+
+    /*
+     * @Author buqingli
+     * @Date 2024/4/3 14:43
+     * @Description 各个状态的订单数量统计
+     **/
+
+    @GetMapping("/statistics")
+    @ApiOperation("各个状态的订单数量统计")
+    public Result<OrderStatisticsVO> statistics() {
+        OrderStatisticsVO orderStatisticsVO = orderService.statistics();
+        return Result.success(orderStatisticsVO);
     }
 }

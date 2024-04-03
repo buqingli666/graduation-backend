@@ -85,4 +85,10 @@
         from orders
         where id = #{id,jdbcType=BIGINT}
     </select>
+
+    <select id="countStatus" resultType="java.lang.Integer">
+        select count(id)
+        from orders
+        where status = #{status,jdbcType=INTEGER}
+    </select>
 </mapper>
