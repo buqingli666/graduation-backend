@@ -33,7 +33,7 @@
                 rejection_reason = #{rejectionReason,jdbcType=VARCHAR},
             </if>
             <if test="cancelTime != null">
-                cancel_time = #{checkoutTime,jdbcType=TIMESTAMP},
+                cancel_time = #{cancelTime,jdbcType=TIMESTAMP},
             </if>
             <if test="payStatus != null">
                 pay_status = #{payStatus,jdbcType=INTEGER},

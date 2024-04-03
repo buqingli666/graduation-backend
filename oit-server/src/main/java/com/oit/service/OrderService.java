@@ -54,4 +54,12 @@ public interface OrderService {
      **/
 
     OrderVO details(Long id);
+
+    /*
+     * @Author buqingli
+     * @Date 2024/4/3 12:43
+     * @Description 用户取消订单
+     **/
+
+    void userCancelById(Long id) throws Exception;
 }
