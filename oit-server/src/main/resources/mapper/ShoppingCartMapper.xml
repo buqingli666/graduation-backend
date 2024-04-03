@@ -47,4 +47,14 @@
         where id = #{id,jdbcType=BIGINT}
     </delete>
 
+    <insert id="insertBatch" parameterType="list">
+        insert into shopping_cart
+        (name, image, user_id, dish_id, setmeal_id, dish_flavor, number, amount, create_time)
+        values
+        <foreach collection="list" item="sc" separator=",">
+           (#{sc.name,jdbcType=VARCHAR}, #{sc.image,jdbcType=VARCHAR}, #{sc.userId,jdbcType=BIGINT},
+            #{sc.dishId,jdbcType=BIGINT}, #{sc.setmealId,jdbcType=BIGINT}, #{sc.dishFlavor,jdbcType=VARCHAR},
+            #{sc.number,jdbcType=INTEGER}, #{sc.amount,jdbcType=DECIMAL}, #{sc.createTime})
+        </foreach>
+    </insert>
 </mapper>

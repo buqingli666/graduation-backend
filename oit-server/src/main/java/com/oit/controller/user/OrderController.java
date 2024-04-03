@@ -103,4 +103,17 @@ public class OrderController {
         return Result.success();
     }
 
+    /*
+     * @Author buqingli
+     * @Date 2024/4/3 13:04
+     * @Description 再来一单
+     **/
+
+    @PostMapping("/repetition/{id}")
+    @ApiOperation("再来一单")
+    public Result<?> repetition(@PathVariable Long id) {
+        orderService.repetition(id);
+        return Result.success();
+    }
+
 }

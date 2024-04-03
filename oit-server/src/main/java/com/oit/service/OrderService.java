@@ -62,4 +62,12 @@ public interface OrderService {
      **/
 
     void userCancelById(Long id) throws Exception;
+
+    /*
+     * @Author buqingli
+     * @Date 2024/4/3 13:05
+     * @Description 再来一单
+     **/
+
+    void repetition(Long id);
 }

@@ -47,4 +47,12 @@ public interface ShoppingCartMapper {
      **/
 
     void deleteById(Long id);
+
+    /*
+     * @Author buqingli
+     * @Date 2024/4/3 13:07
+     * @Description 批量插入购物车数据
+     **/
+
+    void insertBatch(List<ShoppingCart> shoppingCartList);
 }
