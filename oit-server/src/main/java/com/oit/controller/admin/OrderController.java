@@ -1,6 +1,8 @@
 package com.oit.controller.admin;
 
+import com.oit.dto.OrdersConfirmDTO;
 import com.oit.dto.OrdersPageQueryDTO;
+import com.oit.dto.OrdersRejectionDTO;
 import com.oit.result.PageResult;
 import com.oit.result.Result;
 import com.oit.service.OrderService;
@@ -10,10 +12,7 @@ import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 /**
  * @Author: buqingli
@@ -67,5 +66,31 @@ public class OrderController {
     public Result<OrderVO> details(@PathVariable("id") Long id) {
         OrderVO orderVO = orderService.details(id);
         return Result.success(orderVO);
+    }
+
+    /*
+     * @Author buqingli
+     * @Date 2024/4/3 15:02
+     * @Description 接单
+     **/
+
+    @PutMapping("/confirm")
+    @ApiOperation("接单")
+    public Result<?> confirm(@RequestBody OrdersConfirmDTO ordersConfirmDTO) {
+        orderService.confirm(ordersConfirmDTO);
+        return Result.success();
+    }
+
+    /*
+     * @Author buqingli
+     * @Date 2024/4/3 15:05
+     * @Description 拒单
+     **/
+
+    @PutMapping("/rejection")
+    @ApiOperation("拒单")
+    public Result<?> rejection(@RequestBody OrdersRejectionDTO ordersRejectionDTO) throws Exception {
+        orderService.rejection(ordersRejectionDTO);
+        return Result.success();
     }
 }

@@ -1,8 +1,6 @@
 package com.oit.service;
 
-import com.oit.dto.OrdersPageQueryDTO;
-import com.oit.dto.OrdersPaymentDTO;
-import com.oit.dto.OrdersSubmitDTO;
+import com.oit.dto.*;
 import com.oit.result.PageResult;
 import com.oit.vo.OrderPaymentVO;
 import com.oit.vo.OrderStatisticsVO;
@@ -88,4 +86,20 @@ public interface OrderService {
      **/
 
     OrderStatisticsVO statistics();
+
+    /*
+     * @Author buqingli
+     * @Date 2024/4/3 15:04
+     * @Description 接单
+     **/
+
+    void confirm(OrdersConfirmDTO ordersConfirmDTO);
+
+    /*
+     * @Author buqingli
+     * @Date 2024/4/3 15:07
+     * @Description 拒单
+     **/
+
+    void rejection(OrdersRejectionDTO ordersRejectionDTO) throws Exception;
 }
