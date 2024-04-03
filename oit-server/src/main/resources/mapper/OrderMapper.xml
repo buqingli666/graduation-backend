@@ -79,4 +79,10 @@
         </where>
         order by order_time desc
     </select>
+
+    <select id="getById" resultType="com.oit.entity.Orders">
+        select *
+        from orders
+        where id = #{id,jdbcType=BIGINT}
+    </select>
 </mapper>

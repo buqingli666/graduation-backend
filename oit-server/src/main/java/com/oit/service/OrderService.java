@@ -5,6 +5,7 @@ import com.oit.dto.OrdersSubmitDTO;
 import com.oit.result.PageResult;
 import com.oit.vo.OrderPaymentVO;
 import com.oit.vo.OrderSubmitVO;
+import com.oit.vo.OrderVO;
 
 /**
  * @Author: buqingli
@@ -45,4 +46,12 @@ public interface OrderService {
      **/
 
     PageResult pageQuery4User(int page, int pageSize, Integer status);
+
+    /*
+     * @Author buqingli
+     * @Date 2024/4/3 12:31
+     * @Description 查询订单详情
+     **/
+
+    OrderVO details(Long id);
 }

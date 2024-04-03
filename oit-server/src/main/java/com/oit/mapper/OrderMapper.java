@@ -39,4 +39,12 @@ public interface OrderMapper {
      **/
 
     Page<Orders> pageQuery(OrdersPageQueryDTO ordersPageQueryDTO);
+
+    /*
+     * @Author buqingli
+     * @Date 2024/4/3 12:33
+     * @Description 根据id查询订单
+     **/
+
+    Orders getById(Long id);
 }
