@@ -4,6 +4,7 @@ import com.github.pagehelper.Page;
 import com.oit.dto.OrdersPageQueryDTO;
 import com.oit.entity.Orders;
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
 
 import java.time.LocalDateTime;
 import java.util.List;
@@ -25,7 +26,8 @@ public interface OrderMapper {
      * @Description 根据订单号和用户id查询订单
      **/
 
-    Orders getByNumberAndUserId(String orderNumber, Long userId);
+    Orders getByNumberAndUserId(@Param("orderNumber") String orderNumber,
+                                @Param("userId") Long userId);
 
     /*
      * @Author buqingli
@@ -65,6 +67,17 @@ public interface OrderMapper {
      * @Description 根据状态和下单时间查询订单
      **/
 
-    List<Orders> getByStatusAndOrdertimeLT(Integer status, LocalDateTime orderTime);
+    List<Orders> getByStatusAndOrdertimeLT(@Param("status") Integer status,
+                                           @Param("orderTime") LocalDateTime orderTime);
+
+    /*
+     * @Author buqingli
+     * @Date 2024/4/5 14:50
+     * @Description 根据动态条件统计营业额
+     **/
+
+    Double sumByMap(@Param("beginTime") LocalDateTime beginTime,
+                    @Param("endTime") LocalDateTime endTime,
+                    @Param("status") Integer status);
 
 }

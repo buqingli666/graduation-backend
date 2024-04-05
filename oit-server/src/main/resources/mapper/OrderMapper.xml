@@ -98,4 +98,20 @@
         where status = #{status,jdbcType=INTEGER}
           and order_time &lt; #{orderTime,jdbcType=TIMESTAMP}
     </select>
+
+    <select id="sumByMap" resultType="java.lang.Double">
+        select sum(amount)
+        from orders
+        <where>
+            <if test="beginTime != null">
+                order_time &gt;= #{beginTime,jdbcType=TIMESTAMP}
+            </if>
+            <if test="endTime != null">
+                and order_time &lt;= #{endTime,jdbcType=TIMESTAMP}
+            </if>
+            <if test="status != null">
+                and status = #{status,jdbcType=INTEGER}
+            </if>
+        </where>
+    </select>
 </mapper>
