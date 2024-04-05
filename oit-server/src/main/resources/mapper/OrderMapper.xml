@@ -130,4 +130,23 @@
             </if>
         </where>
     </select>
+
+    <select id="getSalesTop10" resultType="com.oit.dto.GoodsSalesDTO">
+        select od.name as name, sum(od.number) as number
+        from order_detail od,
+        orders o
+        where od.order_id = o.id
+        <if test="status != null">
+            and o.status = #{status,jdbcType=INTEGER}
+        </if>
+        <if test="beginTime != null">
+            and order_time &gt;= #{beginTime,jdbcType=TIMESTAMP}
+        </if>
+        <if test="endTime != null">
+            and order_time &lt;= #{endTime,jdbcType=TIMESTAMP}
+        </if>
+        group by name
+        order by number desc
+        limit 0, 10
+    </select>
 </mapper>

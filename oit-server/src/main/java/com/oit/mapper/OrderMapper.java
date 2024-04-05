@@ -1,6 +1,7 @@
 package com.oit.mapper;
 
 import com.github.pagehelper.Page;
+import com.oit.dto.GoodsSalesDTO;
 import com.oit.dto.OrdersPageQueryDTO;
 import com.oit.entity.Orders;
 import org.apache.ibatis.annotations.Mapper;
@@ -88,4 +89,15 @@ public interface OrderMapper {
      **/
 
     Integer countByMap(Map map);
+
+    /*
+     * @Author buqingli
+     * @Date 2024/4/5 17:09
+     * @Description 查询商品销量排名
+     **/
+
+    List<GoodsSalesDTO> getSalesTop10(@Param("beginTime") LocalDateTime beginTime,
+                                      @Param("endTime") LocalDateTime endTime,
+                                      @Param("status") Integer status);
+
 }

@@ -1,5 +1,7 @@
 package com.oit.dto;
 
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -11,10 +13,14 @@ import java.io.Serializable;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
+@ApiModel(description = "查询商品销量传递的数据模型")
 public class GoodsSalesDTO implements Serializable {
-    //商品名称
+
+    private static final long serialVersionUID = 1L;
+
+    @ApiModelProperty(value = "商品名称")
     private String name;
 
-    //销量
+    @ApiModelProperty(value = "销量")
     private Integer number;
 }

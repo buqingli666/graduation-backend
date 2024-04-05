@@ -1,6 +1,7 @@
 package com.oit.service;
 
 import com.oit.vo.OrderReportVO;
+import com.oit.vo.SalesTop10ReportVO;
 import com.oit.vo.TurnoverReportVO;
 import com.oit.vo.UserReportVO;
 
@@ -37,4 +38,13 @@ public interface ReportService {
      **/
 
     OrderReportVO getOrderStatistics(LocalDate begin, LocalDate end);
+
+    /*
+     * @Author buqingli
+     * @Date 2024/4/5 17:04
+     * @Description 查询指定时间区间内的销量排名top10
+     **/
+
+    SalesTop10ReportVO getSalesTop10(LocalDate begin, LocalDate end);
+
 }

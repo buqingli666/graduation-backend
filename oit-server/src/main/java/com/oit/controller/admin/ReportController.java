@@ -3,6 +3,7 @@ package com.oit.controller.admin;
 import com.oit.result.Result;
 import com.oit.service.ReportService;
 import com.oit.vo.OrderReportVO;
+import com.oit.vo.SalesTop10ReportVO;
 import com.oit.vo.TurnoverReportVO;
 import com.oit.vo.UserReportVO;
 import io.swagger.annotations.Api;
@@ -78,5 +79,20 @@ public class ReportController {
             LocalDate end) {
         log.info("订单数据统计,开始时间:{},结束时间:{}", begin, end);
         return Result.success(reportService.getOrderStatistics(begin, end));
+    }
+
+    /*
+     * @Author buqingli
+     * @Date 2024/4/5 17:04
+     * @Description 销量排名统计
+     **/
+
+    @GetMapping("/top10")
+    @ApiOperation("销量排名统计")
+    public Result<SalesTop10ReportVO> top10(
+            @DateTimeFormat(pattern = "yyyy-MM-dd") LocalDate begin,
+            @DateTimeFormat(pattern = "yyyy-MM-dd") LocalDate end) {
+        log.info("销量排名统计,开始时间:{},结束时间:{}", begin, end);
+        return Result.success(reportService.getSalesTop10(begin, end));
     }
 }

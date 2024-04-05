@@ -1,10 +1,12 @@
 package com.oit.service.impl;
 
+import com.oit.dto.GoodsSalesDTO;
 import com.oit.entity.Orders;
 import com.oit.mapper.OrderMapper;
 import com.oit.mapper.UserMapper;
 import com.oit.service.ReportService;
 import com.oit.vo.OrderReportVO;
+import com.oit.vo.SalesTop10ReportVO;
 import com.oit.vo.TurnoverReportVO;
 import com.oit.vo.UserReportVO;
 import lombok.extern.slf4j.Slf4j;
@@ -19,6 +21,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 /**
  * @Author: buqingli
@@ -157,6 +160,33 @@ public class ReportServiceImpl implements ReportService {
                 .totalOrderCount(totalOrderCount)
                 .validOrderCount(validOrderCount)
                 .orderCompletionRate(orderCompletionRate)
+                .build();
+    }
+
+    /*
+     * @Author buqingli
+     * @Date 2024/4/5 17:05
+     * @Description 查询指定时间区间内的销量排名top10
+     **/
+
+    @Override
+    public SalesTop10ReportVO getSalesTop10(LocalDate begin, LocalDate end) {
+        LocalDateTime beginTime = LocalDateTime.of(begin, LocalTime.MIN);
+        LocalDateTime endTime = LocalDateTime.of(end, LocalTime.MAX);
+        List<GoodsSalesDTO> goodsSalesDTOList = orderMapper.getSalesTop10(beginTime, endTime, Orders.COMPLETED);
+
+        String nameList = StringUtils.join(goodsSalesDTOList
+                .stream()
+                .map(GoodsSalesDTO::getName)
+                .collect(Collectors.toList()), ",");
+        String numberList = StringUtils.join(goodsSalesDTOList
+                .stream()
+                .map(GoodsSalesDTO::getNumber)
+                .collect(Collectors.toList()), ",");
+
+        return SalesTop10ReportVO.builder()
+                .nameList(nameList)
+                .numberList(numberList)
                 .build();
     }
 
