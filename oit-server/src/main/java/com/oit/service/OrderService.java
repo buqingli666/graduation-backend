@@ -127,4 +127,12 @@ public interface OrderService {
 
     void complete(Long id);
 
+    /*
+     * @Author buqingli
+     * @Date 2024/4/5 14:13
+     * @Description 用户催单
+     **/
+
+    void reminder(Long id);
+
 }

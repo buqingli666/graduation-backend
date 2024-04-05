@@ -1,0 +1,80 @@
+package com.oit.websocket;
+
+import org.springframework.stereotype.Component;
+
+import javax.websocket.OnClose;
+import javax.websocket.OnMessage;
+import javax.websocket.OnOpen;
+import javax.websocket.Session;
+import javax.websocket.server.PathParam;
+import javax.websocket.server.ServerEndpoint;
+import java.util.Collection;
+import java.util.HashMap;
+import java.util.Map;
+
+/**
+ * @Author: buqingli
+ * @Date: 2024/04/05/11:05
+ * @Description: WebSocket服务
+ */
+
+@Component
+@ServerEndpoint("/ws/{sid}")
+public class WebSocketServer {
+
+    //存放会话对象
+    private static final Map<String, Session> sessionMap = new HashMap<>();
+
+    /*
+     * @Author buqingli
+     * @Date 2024/4/5 11:06
+     * @Description 连接建立成功调用的方法
+     **/
+
+    @OnOpen
+    public void onOpen(Session session, @PathParam("sid") String sid) {
+        System.out.println("客户端:" + sid + "建立连接");
+        sessionMap.put(sid, session);
+    }
+
+    /*
+     * @Author buqingli
+     * @Date 2024/4/5 11:08
+     * @Description 收到客户端消息后调用的方法 message 客户端发送过来的消息
+     **/
+
+    @OnMessage
+    public void onMessage(String message, @PathParam("sid") String sid) {
+        System.out.println("收到来自客户端：" + sid + "的信息:" + message);
+    }
+
+    /*
+     * @Author buqingli
+     * @Date 2024/4/5 11:08
+     * @Description 连接关闭调用的方法
+     **/
+
+    @OnClose
+    public void onClose(@PathParam("sid") String sid) {
+        System.out.println("连接断开:" + sid);
+        sessionMap.remove(sid);
+    }
+
+    /*
+     * @Author buqingli
+     * @Date 2024/4/5 11:08
+     * @Description 群发
+     **/
+
+    public void sendToAllClient(String message) {
+        Collection<Session> sessions = sessionMap.values();
+        for (Session session : sessions) {
+            try {
+                //服务器向客户端发送消息
+                session.getBasicRemote().sendText(message);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+    }
+}

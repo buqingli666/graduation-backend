@@ -20,6 +20,7 @@ import com.oit.vo.OrderPaymentVO;
 import com.oit.vo.OrderStatisticsVO;
 import com.oit.vo.OrderSubmitVO;
 import com.oit.vo.OrderVO;
+import com.oit.websocket.WebSocketServer;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -59,6 +60,9 @@ public class OrderServiceImpl implements OrderService {
 
     @Autowired
     private WeChatPayUtil weChatPayUtil;
+
+    @Autowired
+    private WebSocketServer webSocketServer;
 
     @Value("${oit.shop.address}")
     private String shopAddress;
@@ -192,6 +196,15 @@ public class OrderServiceImpl implements OrderService {
                 .build();
 
         orderMapper.update(orders);
+
+        Map map = new HashMap<>();
+        map.put("type", 1); //消息类型，1表示来单提醒
+        map.put("orderId", orders.getId());
+        map.put("content", "订单号:" + outTradeNo);
+
+        //通过WebSocket实现来单提醒，向客户端浏览器推送消息
+        webSocketServer.sendToAllClient(JSON.toJSONString(map));
+
     }
 
     /*
@@ -474,6 +487,27 @@ public class OrderServiceImpl implements OrderService {
         orders.setStatus(Orders.COMPLETED);
         orders.setDeliveryTime(LocalDateTime.now());
         orderMapper.update(orders);
+    }
+
+    /*
+     * @Author buqingli
+     * @Date 2024/4/5 14:14
+     * @Description 用户催单
+     **/
+
+    @Override
+    public void reminder(Long id) {
+        // 查询订单是否存在
+        Orders orders = orderMapper.getById(id);
+        if (orders == null) {
+            throw new OrderBusinessException(MessageConstant.ORDER_NOT_FOUND);
+        }
+        //基于WebSocket实现催单
+        Map map = new HashMap<>();
+        map.put("type", 2);//2代表用户催单
+        map.put("orderId", id);
+        map.put("content", "订单号：" + orders.getNumber());
+        webSocketServer.sendToAllClient(JSON.toJSONString(map));
     }
 
     private List<OrderVO> getOrderVOList(Page<Orders> page) {
