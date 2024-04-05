@@ -3,6 +3,7 @@ package com.oit.service;
 import com.oit.dto.EmployeeDTO;
 import com.oit.dto.EmployeeLoginDTO;
 import com.oit.dto.EmployeePageQueryDTO;
+import com.oit.dto.PasswordEditDTO;
 import com.oit.entity.Employee;
 import com.oit.result.PageResult;
 
@@ -61,4 +62,13 @@ public interface EmployeeService {
      **/
 
     void update(EmployeeDTO employeeDTO);
+
+    /*
+     * @Author buqingli
+     * @Date 2024/4/5 18:12
+     * @Description 修改密码
+     **/
+
+    Employee editPassword(PasswordEditDTO passwordEditDTO);
+
 }

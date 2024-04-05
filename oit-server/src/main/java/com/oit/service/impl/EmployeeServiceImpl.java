@@ -5,9 +5,11 @@ import com.github.pagehelper.PageHelper;
 import com.oit.constant.MessageConstant;
 import com.oit.constant.PasswordConstant;
 import com.oit.constant.StatusConstant;
+import com.oit.context.BaseContext;
 import com.oit.dto.EmployeeDTO;
 import com.oit.dto.EmployeeLoginDTO;
 import com.oit.dto.EmployeePageQueryDTO;
+import com.oit.dto.PasswordEditDTO;
 import com.oit.entity.Employee;
 import com.oit.exception.AccountLockedException;
 import com.oit.exception.AccountNotFoundException;
@@ -153,6 +155,28 @@ public class EmployeeServiceImpl implements EmployeeService {
         //employee.setUpdateTime(LocalDateTime.now());
         //employee.setUpdateUser(BaseContext.getCurrentId());
         employeeMapper.update(employee);
+    }
+
+    /*
+     * @Author buqingli
+     * @Date 2024/4/5 18:12
+     * @Description 修改密码
+     **/
+
+    @Override
+    public Employee editPassword(PasswordEditDTO passwordEditDTO) {
+        // 根据当前登录用户id查询员工信息
+        Employee employee = employeeMapper.getById(BaseContext.getCurrentId());
+        // 匹配旧密码
+        String oldPassword = DigestUtils.md5DigestAsHex(passwordEditDTO.getOldPassword().getBytes());
+        if (!oldPassword.equals(employee.getPassword())) {
+            // 匹配失败，抛出业务异常
+            throw new PasswordErrorException(MessageConstant.PASSWORD_EDIT_FAILED);
+        } else {
+            employee.setPassword(DigestUtils.md5DigestAsHex(passwordEditDTO.getNewPassword().getBytes()));
+            employeeMapper.update(employee);
+            return employee;
+        }
     }
 
 }
