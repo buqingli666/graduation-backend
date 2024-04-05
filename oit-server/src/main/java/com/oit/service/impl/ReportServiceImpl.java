@@ -4,6 +4,7 @@ import com.oit.entity.Orders;
 import com.oit.mapper.OrderMapper;
 import com.oit.mapper.UserMapper;
 import com.oit.service.ReportService;
+import com.oit.vo.OrderReportVO;
 import com.oit.vo.TurnoverReportVO;
 import com.oit.vo.UserReportVO;
 import lombok.extern.slf4j.Slf4j;
@@ -110,6 +111,57 @@ public class ReportServiceImpl implements ReportService {
 
     /*
      * @Author buqingli
+     * @Date 2024/4/5 16:54
+     * @Description 根据时间区间统计订单数量
+     **/
+
+    @Override
+    public OrderReportVO getOrderStatistics(LocalDate begin, LocalDate end) {
+        List<LocalDate> dateList = new ArrayList<>();
+        dateList.add(begin);
+
+        while (!begin.equals(end)) {
+            begin = begin.plusDays(1);
+            dateList.add(begin);
+        }
+
+        //每天订单总数集合
+        List<Integer> orderCountList = new ArrayList<>();
+        //每天有效订单数集合
+        List<Integer> validOrderCountList = new ArrayList<>();
+        for (LocalDate date : dateList) {
+            LocalDateTime beginTime = LocalDateTime.of(date, LocalTime.MIN);
+            LocalDateTime endTime = LocalDateTime.of(date, LocalTime.MAX);
+            //查询每天的总订单数 select count(id) from orders where order_time > ? and order_time < ?
+            Integer orderCount = getOrderCount(beginTime, endTime, null);
+
+            //查询每天的有效订单数 select count(id) from orders where order_time > ? and order_time < ? and status = ?
+            Integer validOrderCount = getOrderCount(beginTime, endTime, Orders.COMPLETED);
+
+            orderCountList.add(orderCount);
+            validOrderCountList.add(validOrderCount);
+        }
+        //时间区间内的总订单数
+        Integer totalOrderCount = orderCountList.stream().reduce(Integer::sum).get();
+        //时间区间内的总有效订单数
+        Integer validOrderCount = validOrderCountList.stream().reduce(Integer::sum).get();
+        //订单完成率
+        Double orderCompletionRate = 0.0;
+        if (totalOrderCount != 0) {
+            orderCompletionRate = validOrderCount.doubleValue() / totalOrderCount;
+        }
+        return OrderReportVO.builder()
+                .dateList(StringUtils.join(dateList, ","))
+                .orderCountList(StringUtils.join(orderCountList, ","))
+                .validOrderCountList(StringUtils.join(validOrderCountList, ","))
+                .totalOrderCount(totalOrderCount)
+                .validOrderCount(validOrderCount)
+                .orderCompletionRate(orderCompletionRate)
+                .build();
+    }
+
+    /*
+     * @Author buqingli
      * @Date 2024/4/5 16:38
      * @Description 根据时间区间统计用户数量
      **/
@@ -119,5 +171,19 @@ public class ReportServiceImpl implements ReportService {
         map.put("begin", beginTime);
         map.put("end", endTime);
         return userMapper.countByMap(map);
+    }
+
+    /*
+     * @Author buqingli
+     * @Date 2024/4/5 16:55
+     * @Description 根据时间区间统计指定状态的订单数量
+     **/
+
+    private Integer getOrderCount(LocalDateTime beginTime, LocalDateTime endTime, Integer status) {
+        Map map = new HashMap();
+        map.put("status", status);
+        map.put("begin", beginTime);
+        map.put("end", endTime);
+        return orderMapper.countByMap(map);
     }
 }

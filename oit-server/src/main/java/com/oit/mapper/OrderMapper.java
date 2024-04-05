@@ -8,6 +8,7 @@ import org.apache.ibatis.annotations.Param;
 
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Map;
 
 @Mapper
 public interface OrderMapper {
@@ -80,4 +81,11 @@ public interface OrderMapper {
                     @Param("endTime") LocalDateTime endTime,
                     @Param("status") Integer status);
 
+    /*
+     * @Author buqingli
+     * @Date 2024/4/5 16:55
+     * @Description 根据动态条件统计订单数量
+     **/
+
+    Integer countByMap(Map map);
 }

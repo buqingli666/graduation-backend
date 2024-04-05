@@ -1,5 +1,6 @@
 package com.oit.service;
 
+import com.oit.vo.OrderReportVO;
 import com.oit.vo.TurnoverReportVO;
 import com.oit.vo.UserReportVO;
 
@@ -28,4 +29,12 @@ public interface ReportService {
      **/
 
     UserReportVO getUserStatistics(LocalDate begin, LocalDate end);
+
+    /*
+     * @Author buqingli
+     * @Date 2024/4/5 16:54
+     * @Description 根据时间区间统计订单数量
+     **/
+
+    OrderReportVO getOrderStatistics(LocalDate begin, LocalDate end);
 }
