@@ -10,6 +10,7 @@ import com.oit.vo.SetmealVO;
 import org.apache.ibatis.annotations.Mapper;
 
 import java.util.List;
+import java.util.Map;
 
 @Mapper
 public interface SetmealMapper {
@@ -79,4 +80,12 @@ public interface SetmealMapper {
      **/
 
     List<DishItemVO> getDishItemBySetmealId(Long setmealId);
+
+    /*
+     * @Author buqingli
+     * @Date 2024/4/5 17:45
+     * @Description 根据条件统计套餐数量
+     **/
+
+    Integer countByMap(Map map);
 }

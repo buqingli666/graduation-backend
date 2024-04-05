@@ -124,4 +124,16 @@
         where s.setmeal_id = #{setmealId,jdbcType=BIGINT}
     </select>
 
+    <select id="countByMap" resultType="java.lang.Integer">
+        select count(id)
+        from dish
+        <where>
+            <if test="status != null">
+                and status = #{status,jdbcType=INTEGER}
+            </if>
+            <if test="categoryId != null">
+                and category_id = #{categoryId,jdbcType=BIGINT}
+            </if>
+        </where>
+    </select>
 </mapper>
