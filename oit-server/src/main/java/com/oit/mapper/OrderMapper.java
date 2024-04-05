@@ -5,6 +5,9 @@ import com.oit.dto.OrdersPageQueryDTO;
 import com.oit.entity.Orders;
 import org.apache.ibatis.annotations.Mapper;
 
+import java.time.LocalDateTime;
+import java.util.List;
+
 @Mapper
 public interface OrderMapper {
 
@@ -55,4 +58,13 @@ public interface OrderMapper {
      **/
 
     Integer countStatus(Integer status);
+
+    /*
+     * @Author buqingli
+     * @Date 2024/4/5 10:32
+     * @Description 根据状态和下单时间查询订单
+     **/
+
+    List<Orders> getByStatusAndOrdertimeLT(Integer status, LocalDateTime orderTime);
+
 }

@@ -91,4 +91,11 @@
         from orders
         where status = #{status,jdbcType=INTEGER}
     </select>
+
+    <select id="getByStatusAndOrdertimeLT" resultType="com.oit.entity.Orders">
+        select *
+        from orders
+        where status = #{status,jdbcType=INTEGER}
+          and order_time &lt; #{orderTime,jdbcType=TIMESTAMP}
+    </select>
 </mapper>
