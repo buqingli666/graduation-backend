@@ -5,6 +5,7 @@ import com.oit.vo.SalesTop10ReportVO;
 import com.oit.vo.TurnoverReportVO;
 import com.oit.vo.UserReportVO;
 
+import javax.servlet.http.HttpServletResponse;
 import java.time.LocalDate;
 
 /**
@@ -47,4 +48,11 @@ public interface ReportService {
 
     SalesTop10ReportVO getSalesTop10(LocalDate begin, LocalDate end);
 
+    /*
+     * @Author buqingli
+     * @Date 2024/4/5 17:51
+     * @Description 导出近30天的运营数据报表
+     **/
+
+    void exportBusinessData(HttpServletResponse response);
 }
