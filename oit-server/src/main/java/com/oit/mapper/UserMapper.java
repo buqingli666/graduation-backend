@@ -3,6 +3,8 @@ package com.oit.mapper;
 import com.oit.entity.User;
 import org.apache.ibatis.annotations.Mapper;
 
+import java.util.Map;
+
 @Mapper
 public interface UserMapper {
 
@@ -30,4 +32,12 @@ public interface UserMapper {
      **/
 
     User getById(Long userId);
+
+    /*
+     * @Author buqingli
+     * @Date 2024/4/5 16:38
+     * @Description 根据动态条件统计用户数量
+     **/
+
+    Integer countByMap(Map map);
 }

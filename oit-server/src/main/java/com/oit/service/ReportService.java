@@ -1,6 +1,7 @@
 package com.oit.service;
 
 import com.oit.vo.TurnoverReportVO;
+import com.oit.vo.UserReportVO;
 
 import java.time.LocalDate;
 
@@ -19,4 +20,12 @@ public interface ReportService {
      **/
 
     TurnoverReportVO getTurnover(LocalDate begin, LocalDate end);
+
+    /*
+     * @Author buqingli
+     * @Date 2024/4/5 16:33
+     * @Description 根据时间区间统计用户数量
+     **/
+
+    UserReportVO getUserStatistics(LocalDate begin, LocalDate end);
 }
