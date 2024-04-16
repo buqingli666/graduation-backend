@@ -11,7 +11,7 @@
     </parent>
 
     <groupId>com.oit</groupId>
-    <artifactId>graduation-project</artifactId>
+    <artifactId>graduation-backend</artifactId>
     <packaging>pom</packaging>
     <version>1.0-SNAPSHOT</version>
 
