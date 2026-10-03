@@ -8,25 +8,15 @@
 
 本仓库是「味之轻舟」系统的**后端服务**。完整系统由以下三个仓库组成，点击链接可跳转：
 
+<small>
+
 | 模块 | 说明 | 技术栈 | 仓库 |
 | :---: | --- | --- | :---: |
 | 🖥️ **后端服务** | 系统核心，提供 RESTful API 与 WebSocket | Spring Boot · MyBatis · MySQL · Redis · JWT | [`graduation-backend`](https://github.com/buqingli666/graduation-backend) ⬅️ **当前** |
 | 📊 管理端 | 商家管理后台（工作台 / 订单 / 菜品 / 统计） | Vue2 · TypeScript · Element UI · ECharts | [`graduation-vue`](https://github.com/buqingli666/graduation-vue) |
 | 📱 用户端 | 微信小程序点餐端 | uni-app · 微信小程序 · uni-ui | [`graduation-weixin`](https://github.com/buqingli666/graduation-weixin) |
 
-### 🧩 系统架构
-
-```mermaid
-flowchart LR
-    BE["🖥️ 后端服务<br/>graduation-backend"]
-    MP["📱 用户端小程序<br/>graduation-weixin"] -->|用户端 API 与微信支付| BE
-    ADMIN["📊 管理端后台<br/>graduation-vue"] -->|管理端 API 与 WebSocket| BE
-    BE <--> DB[("MySQL<br/>11 张表")]
-    BE <--> CACHE[("Redis<br/>缓存")]
-    BE --> OSS["阿里云 OSS<br/>图片存储"]
-    BE --> WX["微信开放平台<br/>登录 / 支付"]
-    BE --> MAP["百度地图<br/>配送范围校验"]
-```
+</small>
 
 ---
 
@@ -186,9 +176,3 @@ http://localhost:8080/doc.html
 - Controller 按端拆分（`admin` / `user` / `notify`）
 - 公共字段统一使用 `@AutoFill` 注解，由 `AutoFillAspect` 切面处理
 - 业务异常统一继承 `BaseException`，由 `GlobalExceptionHandler` 捕获并返回统一 `Result` 结构
-
-## 九、作者
-
-- 作者：BuQingli
-- 时间：2024.04
-- 类型：毕业设计项目
