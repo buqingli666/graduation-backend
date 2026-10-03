@@ -28,8 +28,6 @@ flowchart LR
     BE --> MAP["百度地图<br/>配送范围校验"]
 ```
 
-> 💡 建议为三个仓库添加相同的 GitHub **Topics**（如 `味之轻舟`、`takeout`、`food-delivery`、`graduation-project`、`spring-boot`、`vue2`、`wechat-miniprogram`），便于在 GitHub 上聚合浏览。
-
 ---
 
 ## 一、项目简介
