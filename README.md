@@ -8,15 +8,11 @@
 
 本仓库是「味之轻舟」系统的**后端服务**。完整系统由以下三个仓库组成，点击链接可跳转：
 
-<small>
-
 | 模块 | 说明 | 技术栈 | 仓库 |
 | :---: | --- | --- | :---: |
-| 🖥️ **后端服务** | 系统核心，提供 RESTful API 与 WebSocket | Spring Boot · MyBatis · MySQL · Redis · JWT | [`graduation-backend`](https://github.com/buqingli666/graduation-backend) ⬅️ **当前** |
-| 📊 管理端 | 商家管理后台（工作台 / 订单 / 菜品 / 统计） | Vue2 · TypeScript · Element UI · ECharts | [`graduation-vue`](https://github.com/buqingli666/graduation-vue) |
-| 📱 用户端 | 微信小程序点餐端 | uni-app · 微信小程序 · uni-ui | [`graduation-weixin`](https://github.com/buqingli666/graduation-weixin) |
-
-</small>
+| 🖥️ **后端服务** | 系统核心（API + WebSocket） | Spring Boot / MyBatis / MySQL / Redis / JWT | [`graduation-backend`](https://github.com/buqingli666/graduation-backend) ⬅️ **当前** |
+| 📊 管理端 | 商家后台（订单 / 菜品 / 统计） | Vue2 / TypeScript / Element UI / ECharts | [`graduation-vue`](https://github.com/buqingli666/graduation-vue) |
+| 📱 用户端 | 小程序点餐端 | uni-app / 微信小程序 / uni-ui | [`graduation-weixin`](https://github.com/buqingli666/graduation-weixin) |
 
 ---
 
